@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-import { login } from "./helpers";
+import { login, open } from "./helpers";
 
 test.skip(
   ({ browserName }) => browserName !== "chromium",
@@ -22,12 +22,12 @@ test("registers a passkey and signs in with it", async ({ page, context }, info)
   });
 
   await login(page, info);
-  await page.goto("/ajustes");
+  await open(page, "/ajustes");
   await page.getByLabel("Nombre del dispositivo").fill("Autenticador de prueba");
   await page.getByRole("button", { name: "Agregar passkey" }).click();
   await expect(page.getByText("Autenticador de prueba")).toBeVisible();
 
-  await page.goto("/mas");
+  await open(page, "/mas");
   await page.getByRole("button", { name: "Cerrar sesión" }).click();
   await expect(page).toHaveURL("/entrar");
   await page.getByRole("button", { name: "Entrar con Face ID o huella" }).click();

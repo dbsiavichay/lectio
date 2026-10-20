@@ -6,6 +6,7 @@ import type { Block } from "@/content/schema";
 
 import { CommitmentForm, IdeasList } from "./commitment";
 import {
+  AutoTextarea,
   ChecklistField,
   ChecksField,
   FieldsList,
@@ -109,12 +110,12 @@ function Requestion({ block }: { block: Extract<Block, { type: "requestion" }> }
 function QuestionInline({ fieldKey }: { fieldKey: string }) {
   const { values, set } = usePlayer();
   return (
-    <textarea
+    <AutoTextarea
       rows={3}
       value={values[fieldKey] ?? ""}
-      onChange={(e) => set(fieldKey, e.target.value)}
+      onChange={(v) => set(fieldKey, v)}
       placeholder="Responde de memoria"
-      className="prose-reading block w-full resize-y rounded-xl border border-input bg-background px-3.5 py-3 outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/30"
+      aria-label="Tu respuesta de memoria"
     />
   );
 }

@@ -30,6 +30,13 @@ export function AutoTextarea({
   className?: string;
 } & Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "value" | "onChange">) {
   const ref = useRef<HTMLTextAreaElement>(null);
+  // Text typed before hydration lives only in the DOM (on a slow phone the
+  // field is usable before React is): hand it over so it gets saved.
+  useEffect(() => {
+    const typed = ref.current?.value ?? "";
+    if (typed && typed !== value) onChange(typed);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;

@@ -1,7 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-import { BOOK, login } from "./helpers";
+import { BOOK, login, open } from "./helpers";
 
 const PAGES = [
   "/",
@@ -17,7 +17,7 @@ const PAGES = [
 test("main screens have no serious accessibility violations", async ({ page }, info) => {
   await login(page, info);
   for (const path of PAGES) {
-    await page.goto(path);
+    await open(page, path);
     await page.waitForLoadState("networkidle");
     const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze();
     const serious = results.violations.filter(
