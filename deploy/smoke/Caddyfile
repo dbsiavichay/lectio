@@ -1,0 +1,23 @@
+# Stand-in for the edge's Caddyfile (grazia-infra: edge/caddy/Caddyfile). CI
+# validates lectio.caddy against it, and smoke.sh serves the site through
+# it. The `security` snippet must stay identical to the edge's: it is what the
+# site imports in production.
+{
+	# Certificates from Caddy's own CA: no Let's Encrypt, no real DNS.
+	local_certs
+	skip_install_trust
+}
+
+(security) {
+	header {
+		# No includeSubDomains: other subdomains of a site's domain may be served
+		# from somewhere that is not this Caddy, and HSTS would lock them out.
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+}
+
+import /etc/caddy/sites/*.caddy

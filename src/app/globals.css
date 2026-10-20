@@ -1,0 +1,233 @@
+@import "tailwindcss" source("../");
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-literata), ui-serif, Georgia, serif;
+  --font-heading: var(--font-sans);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-success: var(--success);
+  --color-q-a: var(--q-a);
+  --color-q-b: var(--q-b);
+  --color-q-c: var(--q-c);
+  --color-q-d: var(--q-d);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/*
+ * Lectio's palette: warm paper, blue-black ink and a deep teal for actions.
+ * Question types keep one hue each across themes (A blue, B violet,
+ * C amber, D green) so the eye learns them.
+ */
+:root {
+  --background: oklch(0.985 0.006 85);
+  --foreground: oklch(0.24 0.02 255);
+  --card: oklch(0.997 0.003 85);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.43 0.075 190);
+  --primary-foreground: oklch(0.985 0.01 190);
+  --secondary: oklch(0.95 0.012 85);
+  --secondary-foreground: oklch(0.3 0.02 255);
+  --muted: oklch(0.955 0.01 85);
+  --muted-foreground: oklch(0.48 0.018 255);
+  --accent: oklch(0.94 0.03 190);
+  --accent-foreground: oklch(0.32 0.06 190);
+  --destructive: oklch(0.55 0.2 27);
+  --warning: oklch(0.8 0.13 75);
+  --warning-foreground: oklch(0.36 0.08 60);
+  --success: oklch(0.5 0.12 155);
+  --border: oklch(0.9 0.01 85);
+  --input: oklch(0.88 0.012 85);
+  --ring: oklch(0.55 0.08 190);
+  --q-a: oklch(0.52 0.14 250);
+  --q-b: oklch(0.5 0.16 300);
+  --q-c: oklch(0.6 0.14 62);
+  --q-d: oklch(0.52 0.12 155);
+  --chart-1: oklch(0.55 0.08 190);
+  --chart-2: oklch(0.7 0.1 75);
+  --chart-3: oklch(0.52 0.14 250);
+  --chart-4: oklch(0.5 0.16 300);
+  --chart-5: oklch(0.58 0.12 155);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.97 0.008 85);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+  --reading-size: 1.0625rem;
+}
+
+.dark {
+  --background: oklch(0.17 0.012 255);
+  --foreground: oklch(0.93 0.01 85);
+  --card: oklch(0.21 0.014 255);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.23 0.014 255);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.74 0.09 190);
+  --primary-foreground: oklch(0.18 0.02 190);
+  --secondary: oklch(0.26 0.014 255);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.25 0.014 255);
+  --muted-foreground: oklch(0.72 0.015 255);
+  --accent: oklch(0.29 0.04 190);
+  --accent-foreground: oklch(0.88 0.05 190);
+  --destructive: oklch(0.7 0.18 25);
+  --warning: oklch(0.78 0.12 75);
+  --warning-foreground: oklch(0.25 0.05 60);
+  --success: oklch(0.7 0.12 155);
+  --border: oklch(1 0 0 / 11%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.7 0.08 190);
+  --q-a: oklch(0.72 0.12 250);
+  --q-b: oklch(0.72 0.13 300);
+  --q-c: oklch(0.8 0.12 70);
+  --q-d: oklch(0.74 0.12 155);
+  --sidebar: oklch(0.19 0.013 255);
+  --sidebar-border: var(--border);
+}
+
+.sepia {
+  --background: oklch(0.95 0.025 82);
+  --foreground: oklch(0.3 0.035 60);
+  --card: oklch(0.97 0.02 82);
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.45 0.085 50);
+  --primary-foreground: oklch(0.97 0.02 82);
+  --secondary: oklch(0.92 0.03 80);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.92 0.03 80);
+  --muted-foreground: oklch(0.47 0.04 60);
+  --accent: oklch(0.9 0.045 70);
+  --accent-foreground: oklch(0.35 0.07 50);
+  --border: oklch(0.85 0.03 75);
+  --input: oklch(0.83 0.035 75);
+  --ring: oklch(0.55 0.08 50);
+  --sidebar: oklch(0.93 0.028 82);
+  --sidebar-border: var(--border);
+}
+
+html[data-text-size="sm"] {
+  --reading-size: 1rem;
+}
+html[data-text-size="lg"] {
+  --reading-size: 1.1875rem;
+}
+html[data-text-size="xl"] {
+  --reading-size: 1.3125rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  :root {
+    /* Room for the bottom tab bar and the iPhone home indicator. */
+    --tabbar-height: calc(4rem + env(safe-area-inset-bottom));
+  }
+  html {
+    @apply font-sans;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-background text-foreground;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@layer components {
+  /* Book text and the user's own writing: the reading face, at the chosen size. */
+  .prose-reading {
+    font-family: var(--font-serif);
+    font-size: var(--reading-size);
+    line-height: 1.65;
+  }
+  .prose-reading :where(p, ul, ol, blockquote, table) + :where(p, ul, ol, blockquote, table) {
+    margin-top: 0.75em;
+  }
+  .prose-reading :where(ul) {
+    list-style: disc;
+    padding-left: 1.25em;
+  }
+  .prose-reading :where(ol) {
+    list-style: decimal;
+    padding-left: 1.4em;
+  }
+  .prose-reading :where(li) + :where(li) {
+    margin-top: 0.35em;
+  }
+  .prose-reading :where(strong) {
+    font-weight: 650;
+  }
+  .prose-reading :where(table) {
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    border-collapse: collapse;
+  }
+  .prose-reading :where(th, td) {
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.55rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .prose-reading :where(th) {
+    background: var(--muted);
+    font-weight: 600;
+  }
+  .prose-reading :where(code) {
+    font-family: var(--font-sans);
+    font-size: 0.85em;
+    background: var(--muted);
+    border-radius: 0.3rem;
+    padding: 0.05rem 0.3rem;
+  }
+}

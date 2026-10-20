@@ -1,0 +1,25 @@
+# Only what the build reads goes into the context. Local builds, reports, env
+# files and, above all, the books and the database must never reach an image.
+.git
+.github
+node_modules
+.next
+dist
+out
+coverage
+playwright-report
+test-results
+.vitest
+*.tsbuildinfo
+next-env.d.ts
+.env*
+.DS_Store
+content/books
+data
+
+# Not read by the build.
+deploy
+tests
+*.md
+Dockerfile
+.dockerignore

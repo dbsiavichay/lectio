@@ -1,0 +1,47 @@
+# Lectio's production stack. Deployed to /opt/lectio on the VPS that runs the
+# shared edge proxy (/opt/edge, owned by grazia-infra).
+#
+# No port is published: the edge reaches the server over the external `edge`
+# network as `lectio-web:3000`. The database and its backups live in ./data
+# (/opt/lectio/data), owned by uid 1000, the image's `node` user. WEB_TAG is
+# written to /opt/lectio/.env by scripts/deploy.sh; APP_URL, RP_ID and TZ can
+# be set there too (see env.example).
+
+name: lectio
+
+services:
+  web:
+    image: ghcr.io/dbsiavichay/lectio:${WEB_TAG:-latest}
+    restart: unless-stopped
+    # Forwards SIGTERM and reaps children; Node as PID 1 does neither.
+    init: true
+    read_only: true
+    tmpfs:
+      - /app/.next/cache:uid=1000,gid=1000,mode=0700,size=64m
+      - /tmp:uid=1000,gid=1000,mode=1777,size=32m
+    volumes:
+      - ./data:/app/data
+    environment:
+      APP_URL: ${APP_URL:-https://lectio.dbsiavichay.dev}
+      RP_ID: ${RP_ID:-}
+      TZ: ${TZ:-America/Guayaquil}
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      edge:
+        aliases: [lectio-web]
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    deploy:
+      resources:
+        limits:
+          memory: 384M
+
+networks:
+  edge:
+    name: edge
+    external: true

@@ -1,0 +1,10 @@
+.next
+out
+coverage
+playwright-report
+test-results
+package-lock.json
+next-env.d.ts
+content/books
+data
+src/db/migrations

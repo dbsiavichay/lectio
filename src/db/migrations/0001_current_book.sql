@@ -1,0 +1,1 @@
+ALTER TABLE `users` ADD `current_book` text;

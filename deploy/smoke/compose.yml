@@ -1,0 +1,37 @@
+# Smoke overlay for ../compose.yml: the production stack, hardened the same
+# way, behind a stand-in for the edge proxy, on a network and ports of its own
+# (localhost:8280/8643) so it collides with no real `edge` network nor with the
+# portfolio's (8180/8543) or Grazia's (8080/8443) smoke stacks.
+#
+#   docker compose -f deploy/compose.yml -f deploy/smoke/compose.yml …
+
+name: lectio-smoke
+
+services:
+  web:
+    # Built locally (smoke.sh up). The tag still comes from WEB_TAG.
+    image: lectio:${WEB_TAG:-smoke}
+    environment:
+      APP_URL: https://lectio.dbsiavichay.dev
+    # A named volume instead of /opt/lectio/data: it takes the image's
+    # ownership (uid 1000), like the prepared directory on the VPS.
+    volumes:
+      - data:/app/data
+
+  edge:
+    image: caddy:2-alpine
+    ports:
+      - "127.0.0.1:8280:80"
+      - "127.0.0.1:8643:443"
+    volumes:
+      - ./smoke/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy:/etc/caddy/sites:ro
+    networks: [edge]
+
+volumes:
+  data:
+
+networks:
+  edge:
+    name: lectio-smoke
+    external: false

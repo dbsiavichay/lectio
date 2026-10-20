@@ -1,0 +1,82 @@
+{
+  "book": "libro-ejemplo",
+  "entries": [
+    {
+      "id": "introduccion",
+      "kind": "front",
+      "ref": "Introducción",
+      "title": "Introducción",
+      "level": 0
+    },
+    {
+      "id": "parte-1",
+      "kind": "part",
+      "ref": "Primera Parte",
+      "title": "Primera Parte: Los Fundamentos",
+      "level": 0
+    },
+    {
+      "id": "c1",
+      "kind": "chapter",
+      "ref": "Cap. 1",
+      "title": "Por qué estudiar",
+      "level": 0,
+      "chapter": 1
+    },
+    {
+      "id": "c1.leer-no-es-aprender",
+      "kind": "section",
+      "ref": "Cap. 1 › Leer no es aprender",
+      "title": "Leer no es aprender",
+      "level": 0,
+      "chapter": 1
+    },
+    {
+      "id": "c1.el-esfuerzo-de-recordar",
+      "kind": "section",
+      "ref": "Cap. 1 › El esfuerzo de recordar",
+      "title": "El esfuerzo de recordar",
+      "level": 0,
+      "chapter": 1
+    },
+    {
+      "id": "c1.repasar-a-tiempo",
+      "kind": "section",
+      "ref": "Cap. 1 › Repasar a tiempo",
+      "title": "Repasar a tiempo",
+      "level": 0,
+      "chapter": 1
+    },
+    {
+      "id": "c2",
+      "kind": "chapter",
+      "ref": "Cap. 2",
+      "title": "Los obstáculos",
+      "level": 0,
+      "chapter": 2
+    },
+    {
+      "id": "c2.la-distraccion",
+      "kind": "section",
+      "ref": "Cap. 2 › La distracción",
+      "title": "La distracción",
+      "level": 0,
+      "chapter": 2
+    },
+    {
+      "id": "c2.el-desanimo",
+      "kind": "section",
+      "ref": "Cap. 2 › El desánimo",
+      "title": "El desánimo",
+      "level": 0,
+      "chapter": 2
+    },
+    {
+      "id": "apendice-1",
+      "kind": "appendix",
+      "ref": "Apéndice Uno",
+      "title": "Apéndice Uno: Plan semanal",
+      "level": 0
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+# Lectio. scripts/apply-edge.sh installs this file as
+# /opt/edge/caddy/sites/lectio.caddy on the VPS, next to the other sites the
+# shared edge serves. The `security` snippet comes from the edge's Caddyfile.
+#
+# The app sends its own Content-Security-Policy and Permissions-Policy
+# (next.config.ts), so the same headers apply in development and tests.
+
+lectio.dbsiavichay.dev {
+	import security
+
+	# Next.js gzips what it serves. Asking it for an uncompressed response lets
+	# Caddy pick the encoding (zstd for current browsers) in one place.
+	encode zstd gzip
+
+	reverse_proxy lectio-web:3000 {
+		header_up -Accept-Encoding
+	}
+}
